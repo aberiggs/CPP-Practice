@@ -13,7 +13,7 @@ int main() {
 
     std::cout << "Enter " << inputSize << " numbers.\n";
 
-    int* nums = new int[inputSize];
+    int nums[inputSize] {};
 
     for (int i = 0; i < inputSize; ++i) {
         std::cin >> nums[i];
@@ -28,7 +28,7 @@ int main() {
     return 0;
 }
 
-void bubbleSort(int* arr, int size) {
+void bubbleSort(int arr[], int size) {
     // Could exit early in best case, but won't worry about that right now
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size-1; ++j) {

@@ -33,7 +33,6 @@ int main() {
 
 int getMinRequiredCubes(const std::string& line, std::string_view color) {
     int minSetVal {};
-
     int startPos { static_cast<int>(line.find(":")) };
     int endPos { static_cast<int>(std::min(line.find(","), line.find(";"))) };
 
