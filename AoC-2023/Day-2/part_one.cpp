@@ -3,8 +3,8 @@
 #include <string>
 #include <string_view>
 
-bool impossibleInLine(std::string line);
-bool impossibleInSection(std::string section);
+bool impossibleInLine(std::string& line);
+bool impossibleInSection(std::string& section);
 
 
 int main() {
@@ -33,14 +33,13 @@ int main() {
     return 0;
 }
 
-bool impossibleInLine(std::string line) {
-    std::cout << line << "\n";
-
-    int startPos { static_cast<int>(line.find(":"))};
+bool impossibleInLine(std::string& line) {
+    int startPos { static_cast<int>(line.find(":")) };
     int endPos { static_cast<int>(std::min(line.find(","), line.find(";"))) };
     
     while (startPos < line.length()) {
-        if (impossibleInSection(line.substr(startPos+2, endPos-startPos))) 
+        std::string section { line.substr(startPos+2, endPos-startPos) };
+        if (impossibleInSection(section)) 
             return true;
 
         startPos = endPos;
@@ -50,11 +49,10 @@ bool impossibleInLine(std::string line) {
     return false;
 }
 
-bool impossibleInSection(std::string section) {
+bool impossibleInSection(std::string& section) {
     int redMax { 12 };
     int greenMax { 13 };
     int blueMax { 14 };
-    std::cout << "Section: " << section << "\n";
     int val { std::stoi(section) };
 
     if ((section.find("red") != std::string::npos) && (val > redMax))
