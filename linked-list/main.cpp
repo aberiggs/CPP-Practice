@@ -1,4 +1,4 @@
-/* Main file to test the linked-list class */
+/* Main file to test the LinkedList class */
 #include "./LinkedList.h"
 #include <iostream>
 

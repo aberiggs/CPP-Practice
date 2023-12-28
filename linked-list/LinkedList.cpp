@@ -7,7 +7,7 @@ void LinkedList::insert(int val) {
     if (m_head == nullptr) {
         m_head = newNode;
     } else {
-        Node* currentNode {m_head};
+        Node* currentNode { m_head };
         while (currentNode->next() != nullptr) {
             currentNode = currentNode->next();
         }    
@@ -48,7 +48,7 @@ void LinkedList::print() const {
     std::cout << "[";
 
     if (m_head != nullptr) {
-        Node* currentNode {m_head};
+        Node* currentNode { m_head };
         while (currentNode != nullptr && currentNode->next() != nullptr) {
             std::cout << currentNode->val() << ", ";
             currentNode = currentNode->next();
