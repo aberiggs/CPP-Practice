@@ -1,6 +1,7 @@
 #include "./LinkedList.h"
 
 #include <iostream>
+#include <stdexcept>
 
 void LinkedList::insert(int val) {
     Node* newNode = new Node(val);
@@ -12,6 +13,30 @@ void LinkedList::insert(int val) {
             currentNode = currentNode->next();
         }    
         currentNode->setNext(newNode);
+    }
+
+    ++m_length;
+}
+
+void LinkedList::insert(int val, int pos) {
+    if (pos < 0 || pos > m_length) 
+        throw std::range_error("insert requires 'pos' to be within the range of elements + 1.");
+
+    Node* newNode = new Node(val);
+    Node* currentNode { m_head };
+    if (pos == 0) {
+        newNode->setNext(currentNode);
+        m_head = newNode;
+    } else {
+        Node* currentNode { m_head };
+        int curPos { 0 };
+        while (currentNode->next() != nullptr && curPos < pos-1) {
+            currentNode = currentNode->next();
+            ++curPos;
+        }    
+        Node* oldNext = currentNode->next();
+        currentNode->setNext(newNode);
+        newNode->setNext(oldNext);
     }
 
     ++m_length;
@@ -39,6 +64,20 @@ void LinkedList::deleteAt(int pos) {
     }
 
     --m_length;
+}
+
+int LinkedList::valAt(int pos) {
+    if (pos >= m_length || pos < 0) 
+        throw std::range_error("valAt requires 'pos' to be within the range of elements.");
+
+    Node* currentNode { m_head };
+    int curPos { 0 };
+    while (curPos != pos) {
+        currentNode = currentNode->next();
+        ++curPos;
+    }    
+    
+    return currentNode->val(); 
 }
 
 int LinkedList::length() const { return m_length; }
