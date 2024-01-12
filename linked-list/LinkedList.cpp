@@ -43,7 +43,8 @@ void LinkedList::insert(int val, int pos) {
 }
 
 void LinkedList::deleteAt(int pos) {
-    if (pos >= m_length || pos < 0) return;
+    if (pos >= m_length || pos < 0)
+        throw std::range_error("deleteAt requires 'pos' to be within the range of elements.");
 
     // If we're deleting the head
     if (pos == 0) {

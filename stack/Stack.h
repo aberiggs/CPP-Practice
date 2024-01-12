@@ -2,11 +2,11 @@
 
 #include "../linked-list/LinkedList.h"
 
-class Queue {
+class Stack {
 public:
-    Queue();
-    void enqueue(int val);
-    int dequeue();
+    Stack();
+    void push(int val);
+    int pop();
     int peek();
     bool empty();
     int length();
